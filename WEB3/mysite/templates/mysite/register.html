@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html>
+
+<title>{% block title %}Adventour | Sign Up{% endblock %}</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{% static "mysite/WildCatLogo.ico" %}"/>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+
+<style>
+form {
+    
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #141414;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+
+
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+}
+
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+
+    background-image: url('{% static "mysite/parallax1.jpg" %}');
+    min-height: 60%;
+}
+
+}
+
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+.w3-bgcolorr {background-color: #141414;}
+.w3-text-align {text-align: justify;}
+.w3-text-colorr {color: orange;}
+.w3-text-sizee {font-size:100%;}
+
+
+.w3-padding-top: 50px;
+.w3-padding-right: 50px;
+.w3-padding-bottom: 50px;
+.w3-padding-left: 50px;
+
+
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+
+
+
+</style>
+
+
+
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+
+    <a href="/logout" class="w3-orange w3-bar-item w3-button w3-hide-small w3-left w3-hover-white"><i class="fa fa-power-off"></i> LOG OUT</a>
+    <a href="/login" class="w3-orange w3-bar-item w3-button w3-hide-small w3-left w3-hover-white"><i class="fa fa-circle-o-notch"></i> LOG IN</a>
+
+<!--
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+      <i class="fa fa-search"></i>
+    </a>
+
+-->
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="/login" class="w3-bar-item w3-button" onclick="toggleFunction()">LOG IN</a>
+    <a href="/logout" class="w3-bar-item w3-button" onclick="toggleFunction()">LOG OUT</a>
+  
+  </div>
+</div>
+
+
+
+
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">>
+
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"> ADVENTOUR <span class="w3-hide-small"> TREKS </span> </span>
+  </div>
+</div>
+
+
+<body>
+
+<br>
+
+
+
+<h2>ADVENTOUR TREKS | REGISTRATION FORM</h2>
+
+<br>
+<div class="container">
+
+   <form method="POST">
+        {% csrf_token %} {{ form.as_p }}
+
+         
+        <button type="submit">Sign Up</button>
+
+ 
+   </form>
+
+</div>
+
+</body>
+
+</html>

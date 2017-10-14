@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+    {% if user.is_authenticated %}
+    <br>
+    <br>
+
+    <p class="w3-large w3-text-red"><em><b>Welcome back! {{ user.username }} (Guest User!)</b></em></p>
+<!--
+     <span class="w3-xxlarge w3-text-white w3-wide"></span>
+-->
+    
+    
+
+    {% else %}
+    {% endif %}
+
+
+<!DOCTYPE html>
+<html>
+<title>{% block title %}Adventour | Treks{% endblock %}</title>
+{% load staticfiles %}
+<link rel="shortcut icon" href="{% static "mysite/WildCatLogo.ico" %}" />
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #777;
+    line-height: 1.8;
+}
+
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+
+    background-image: url('{% static "mysite/parallax1.jpg" %}');
+    min-height: 100%;
+}
+
+/* Second image (Portfolio) */
+.bgimg-2 {
+    background-image: url("{% static "mysite/parallax2.jpg" %}");
+    min-height: 400px;
+}
+
+/* Third image (Contact) */
+.bgimg-3 {
+    background-image: url("{% static "mysite/parallax3.jpg" %}");
+    min-height: 400px;
+}
+
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+.w3-bgcolorr {background-color: #141414;}
+.w3-text-align {text-align: justify;}
+.w3-text-colorr {color: orange;}
+.w3-text-sizee {font-size:100%;}
+
+
+.w3-padding-top: 50px;
+.w3-padding-right: 50px;
+.w3-padding-bottom: 50px;
+.w3-padding-left: 50px;
+
+
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+
+a:link {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover {
+    color: black;
+    background-color: transparent;
+    text-decoration: underline;
+}
+a:active {
+    color: black;
+    background-color: transparent;
+    text-decoration: underline;
+}
+ul {
+    list-style-type: none;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    padding-left: 25%;
+    text-color: black;
+    font-family: "Lato";
+    font-size: 115%;
+}
+li:before {
+  content: "• ";
+}
+
+p {
+    text-indent: 5px;
+}
+
+
+
+</style>
+
+
+
+
+<body>
+
+
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="#home" class="w3-bar-item w3-button">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> ABOUT</a>
+    <a href="#outdoordestinations" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-th"></i> OUTDOOR DESTINATIONS</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
+
+    <a href="/register" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red"><i class="fa fa-plus-square"></i> SIGN UP</a>
+
+    <a href="/logout" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red"><i class="fa fa-power-off"></i> LOG OUT</a>
+
+    <a href="/login" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red"><i class="fa fa-circle-o-notch"></i> LOG IN</a>
+
+<!--
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+      <i class="fa fa-search"></i>
+    </a>
+
+-->
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT</a>
+    <a href="#outdoordestinations" class="w3-bar-item w3-button" onclick="toggleFunction()">OUTDOOR DESTINATIONS</a>
+    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+    <a href="/login" class="w3-bar-item w3-button" onclick="toggleFunction()">LOG IN</a>
+    <a href="/logout" class="w3-bar-item w3-button" onclick="toggleFunction()">LOG OUT</a>
+    <a href="/register" class="w3-bar-item w3-button" onclick="toggleFunction()">SIGN UP</a>
+
+  </div>
+</div>
+
+
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">>
+
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity"> ADVENTOUR <span class="w3-hide-small"> TREKS </span> </span>
+  </div>
+</div>
+
+<!-- Container (About Section) -->
+<div class="w3-content w3-container w3-padding-64" id="about">
+  <h2 class="w3-center w3-text-colorr">ABOUT US</h2>
+  <h3><p class="w3-center"><em>PHILOSOPHY</em></p></h3>
+  <center>
+  <p><font size="3.5" face="Lato" color="#777"> Adventour Treks is a team of ITE Students whose interest in the outdoors and has taken to far off 
+
+  destinations from mountains to distant seas. There is no greater feeling when you are out there experiencing nature. 
+
+   Our philosophy is that, as we travel we are able to find our individually passion and excitement when it comes to exploring nature, hence we are also trying to achieve and make a difference by promoting the advocacy in Climb for a Cause Activities in order to raise funds in campaigns and help our Mother Nature. </font></p>
+
+
+
+  </center>
+  <br>
+
+<!--
+  <div class="w3-row">
+    <div class="w3-col m6 w3-left w3-padding-large">
+      <p><b><i class="fa fa-user w3-margin-right w3-left"></i>My Name</b></p><br>
+-->
+    
+<!--
+      <img src="myavatar.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off w3-left" alt="Photo of Me" width="250" height="100">
+    </div>
+-->
+
+
+
+
+<center>
+<div>
+
+{% load staticfiles %}
+  
+<img src="{% static "mysite/k3.jpg" %}" alt="" style="padding:15px; width:230px; height:230px;">
+<img src="{% static "mysite/k2.jpg" %}" alt="" style="padding:15px; width:230px; height:230px;">
+<img src="{% static "mysite/k1.jpg" %}" alt="" style="padding:15px; width:230px; height:230px;">
+<img src="{% static "mysite/UIClogo.jpg" %}" alt="" style="padding:15px; width:230px; height:230px;">
+
+</div>
+</center>
+
+
+
+
+    <!-- Hide this text on small devices -->
+    <!--
+    <div class="w3-col m6 w3-hide-small w3-padding-large">
+      <p>Welcome to my website. I am lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+
+  -->
+
+  </div>
+
+
+  </div>
+</div>
+
+<div class="w3-row w3-center w3-dark-grey w3-padding-16">
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">Dumagan, Earl Angelo</span><br>
+    Programmer/Web Developer
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">Plania, Keen</span><br>
+    Web Developer
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">Co, Kelvin</span><br>
+    Web Developer
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">WebApp</span><br>
+    BSIT-3EN
+  </div>
+</div>
+
+<!-- Second Parallax Image with Outdoor Destinations Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-white w3-wide">OUTDOOR DESTINATIONS</span>
+  </div>
+</div>
+
+
+<!-- Container (Outdoor Destinations Section) -->
+
+<div class="w3-content w3-container w3-padding-64" id="outdoordestinations">
+  <h2 class="w3-center w3-text-colorr">Top Mountain Hikes/Climbs in Philippines</h2>
+  
+
+<br>
+
+
+
+<ul>
+    <li> <a target="_blank">Bakun Trio</a> </li>
+    <li> <a target="_blank">Mt. Amuyao Traverse</a> </li>
+    <li> <a target="_blank">Mt. Apo</a> </li>
+    <li> <a target="_blank">Mt. Bulusan</a> </li>
+    <li> <a target="_blank">Mt. Guiting-Guiting</a> </li>
+    <li> <a target="_blank">Mt. Kitanglad</a> </li>
+    <li> <a target="_blank">Mt. Pulag</a> </li>
+    <li> <a target="_blank">Mt. Ugo</a> </li>
+</ul>
+
+
+
+  <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+  
+  <br>
+  <br>
+
+{% load staticfiles %}
+  <div class="w3-row-padding w3-center">
+    <div main class="w3-col m3">
+      <img src="{% static "mysite/BThome.png" %}" style="padding:5px;  width:85%" onclick="onClick(this)" class="w3-hover-opacity" alt="Bakun Trio 💕
+      It is a sitting on a plateau in the middle of the Cordilleras, the small town of Bakun,Benguet is the perfect setting for a three-day mountain adventure. With its poblacion serving as a base camp, climbers can go on day-hikes to any of the three surrounding mountains: Mt. Lubo with its dense forests, Mt. Kabunian and its hallowed grounds, and Mt. Tenglawan with its long and arduous hike." height="90%">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static "mysite/MAThome.png" %}" style="padding:5px;  width:85%" onclick="onClick(this)" class="w3-hover-opacity" alt="Mt. Amuyao Traverse 💕 Standing at 2,200 meters above sea level, is the ninth highest mountain in the country. It is a very challenging mountain, and therefore popular among seasoned mountaineers. Located in the Mountain Province in the Cordillera Region, Mt. Amuyao offers spectacular vistas of forests, surrounding mountains, and the world-famous rice terraces to those trekking to its peak. However, the journey to the top isn’t easy, so hiking experience—or at least great determination and preparation—is necessary before proceeding with the trip. ">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static "mysite/MAhome.jpg" %}" style="padding:5px;  width:90%" onclick="onClick(this)" class="w3-hover-opacity" alt="Mt. Apo 💕  Rising 2956 Meters Above Sea Level, Mt. Apo stands as the highest mountain in the Philippines. Also considered the grandfather of Philippine mountains and a sacred place in local mythology, Mt. Apo is an important climb, especially for local mountaineers. Those seeking to experience its trails will also find themselves immersed in the rich culture of the people living at the foot of the mountain. " height="90%">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static "mysite/MBhome.jpg" %}" style="padding:5px;  height:130px" onclick="onClick(this)" class="w3-hover-opacity" alt="Mt. Bulusan 💕  One of the most recently active volcanoes in the country, Mt. Bulusan which is located in the province of Sorsogon in the Bicol Region offers thrill seekers and adventurers an experience that surely they won’t forget. Having just recently erupted last 2012, Mt. Bulusan is now open again for hiking and trekking. The volcano is a magnificent site to see because of the scenery it possesses which can be compared to the surface found in Mars. Standing at 1565 masl, Mt. Bulusan sure is challenging for seasoned and veteran climbers.
+ ">
+    </div>
+  </div>
+
+  <div class="w3-row-padding w3-center w3-section">
+    <div class="w3-col m3">
+      <img src="{% static "mysite/MG2home.jpg" %}" style="padding:10px;  width:95%" onclick="onClick(this)" class="w3-hover-opacity" alt="Mt. Guiting-Guiting 💕  At 6,750 above sea level, Mt. Guiting Guiting is not nearly one of the tallest peaks in the country and yet it is one of the most sought after mountains in the record of Philippine Mountaineering. Dubbed by some local and international natural scientists as the “Galapagos of Asia,” Mt. Guiting Guiting boasts of its thick and old growth vegetation and forests. Sure enough, the mountain doesn’t have the freezing temperatures in Pulag or the height of Apo and yet it has caught the attention and gained the respect of mountaineers.
+  ">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static "mysite/MKhome.jpg" %}" style="padding:10px;  width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Mt. Kitanglad 💕  Mt. Kitanglad is the fourth highest mountain in the Philippines. Amazingly, there are bunkhouses with electricity at the summit, for it is a communications center. Since people actually work at the summit, the trails going up are well-established. Still, the trails are challenging, the views beautiful, and experience unique.  ">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static "mysite/MPhome.jpg" %}" style="padding:10px; width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Mt. Pulag 💕  One of the most famous mountains in the Philippines, standing proudly at 2922 meters above sea level. It has one of the richest biodiversity in the country, having vast forests full of pines, moss, and grass. It is a mountain worth climbing, both for its challenging trails and its natural beauty. ">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="{% static "mysite/MUhome.png" %}" style="padding:10px; width:100%; height:90%;" onclick="onClick(this)" class="w3-hover-opacity" alt="Mt. Ugo 💕 This  mountain also sometimes referred to as Mt. Ugu, is considered as one of the most popular destinations in the Cordillera region. Unlike its neighbors, Mt. Pulag and Mt. Napulauan, Mt. Ugo has a lower elevation. Nevertheless, the mountain is at par with its neighbors when it comes to showcasing the beauty of nature. It boasts of enchanting forests that is home to tall pine trees and it also offers equally breath-taking views. ">
+    </div>
+
+
+
+<!--
+    <a href="#contact"
+    <button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">LOAD MORE</button>
+    </a>
+-->
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ <style>
+    input[type='submit'], button, [aria-label]{
+      cursor: pointer;
+    }
+    #spoiler{
+      display: none;
+    }
+  </style>
+</head>
+<center>
+<body>
+
+<h2 class="w3-center w3-text-colorr">Add New Destinations to your Bucket list!</h2>
+
+<form action="javascript:void(0);" method="POST" onsubmit="app.Add()"> 
+  <input type="text" id="add-name" placeholder="New Destination">
+  <input type="submit" value="Add">
+</form>
+
+<div id="spoiler" role="aria-hidden">
+  <form action="javascript:void(0);" method="POST" id="saveEdit">
+    <input type="text" id="edit-name">
+    <input type="submit" value="Edit" /> <a onclick="CloseInput()" aria-label="Close">&#10006;</a>
+  </form>
+</div>
+
+<p id="counter"></p>
+
+<table>
+  <tr>
+    <th>Title</th>
+  </tr>
+    <tbody id="Destinations">
+    </tbody>
+</table>
+
+<script>
+var app = new function() {
+  this.el = document.getElementById('Destinations');
+  this.Destinations = [' Mt. Talomo'];
+  this.Count = function(data) {
+    var el   = document.getElementById('counter');
+    var name = 'Destinations';
+    if (data) {
+      if (data > 1) {
+        name = 'Destinations';
+      }
+      el.innerHTML = data + ' ' + name ;
+    } else {
+      el.innerHTML = 'No ' + name;
+    }
+  };
+  
+  this.FetchAll = function() {
+    var data = '';
+    if (this.Destinations.length > 0) {
+      for (i = 0; i < this.Destinations.length; i++) {
+        data += '<tr>';
+        data += '<td>' + this.Destinations[i] + '</td>';
+        data += '<td><button onclick="app.Edit(' + i + ')">Edit</button></td>';
+        data += '<td><button onclick="app.Delete(' + i + ')">Delete</button></td>';
+        data += '</tr>';
+      }
+    }
+    this.Count(this.Destinations.length);
+    return this.el.innerHTML = data;
+  };
+  this.Add = function () {
+    el = document.getElementById('add-name');
+    // Get the value
+    var Destinations = el.value;
+    if (Destinations) {
+      // Add the new value
+      this.Destinations.push(Destinations.trim());
+      // Reset input value
+      el.value = '';
+      // Dislay the new list
+      this.FetchAll();
+    }
+  };
+  this.Edit = function (item) {
+    var el = document.getElementById('edit-name');
+    // Display value in the field
+    el.value = this.Destinations[item];
+    // Display fields
+    document.getElementById('spoiler').style.display = 'block';
+    self = this;
+    document.getElementById('saveEdit').onsubmit = function() {
+      // Get value
+      var Destinations = el.value;
+      if (Destinations) {
+        // Edit value
+        self.Destinations.splice(item, 1, Destinations.trim());
+        // Display the new list
+        self.FetchAll();
+        // Hide fields
+        CloseInput();
+      }
+    }
+  };
+  this.Delete = function (item) {
+    // Delete the current row
+    this.Destinations.splice(item, 1);
+    // Display the new list
+    this.FetchAll();
+  };
+  
+}
+app.FetchAll();
+function CloseInput() {
+  document.getElementById('spoiler').style.display = 'none';
+}
+</script>
+</center>
+</body>
+
+
+<br>
+<br>
+
+
+
+
+
+<center>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js">    
+</script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"> 
+</script>
+<script>
+    var blank="http://upload.wikimedia.org/wikipedia/commons/c/c0/Blank.gif";
+</script>
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<script type="text/javascript">//<![CDATA[ 
+$(window).load(function(){
+    $('input[type="file"]').change(function () {
+       if ($(this).val() !== "") {
+        var file = $('#file_select')[0].files[0];
+        console.log(file.size);
+        //console.log(file.width);
+        var reader = new FileReader();
+        var img = new Image();
+        var _URL = window.URL || window.webkitURL;
+        reader.readAsDataURL(file);
+        reader.onload = function(_file) {
+            // Create a container for image and span X
+            $imageItem = $('<div>').addClass('imageItem');
+            $(img).appendTo($imageItem);
+            $('<span>').html('x').addClass('remover').appendTo($imageItem);
+            img.src= _file.target.result;
+
+            // Append the container to panel
+            $('#previewPane').append($imageItem);
+            //console.log(img.src);
+            console.log(img.width);
+        } 
+    }
+
+    // Deletegate for dynamically created span, so we don't have to register a
+    // new event listener each time a new imageContainer is created.
+    $('#previewPane').on('click', '.remover', function() {
+        $this = $(this);
+        $this.parent('.imageItem').remove();
+    });
+});
+});//]]>
+
+</script>
+<style>
+article, aside, figure, footer, header, hgroup,
+    menu, nav, section { display: block; }
+    #x { display:none; position:relative; z-index:200; float:right}
+    #previewPane { display: inline-block; }
+</style>
+</head>
+<body>
+<section>
+<input type='file' name="file" id="file_select"/>   
+<br/>
+<span id="previewPane">
+</span>
+</section>
+</body>
+</center>
+
+<br>
+<br>
+
+
+
+
+<center>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+</script>
+<input id="btnAdd" type="button" value="Add Content" />
+<br />
+<br />
+<div id="TextBoxContainer">
+  <!--Textboxes will be added here -->
+</div>
+<br />
+
+
+</script>
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs /jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+
+$(function() {
+  $("#btnAdd").bind("click", function() {
+    var div = $("<div />");
+    div.html(GetDynamicTextBox(""));
+    $("#TextBoxContainer").append(div);
+  });
+  $("#btnGet").bind("click", function() {
+    var values = 
+      $.map($("input[name=DynamicTextBox]"), function(el) {
+        return el.value
+      }).join(",\n");
+    $("#anotherTextbox").val(values);
+  });
+  $("body").on("click", ".remove", function() {
+    $(this).closest("div").remove();
+  });
+});
+
+function GetDynamicTextBox(value) {
+  return '<input name = "DynamicTextBox" type="text" value = "' + value + '" />&nbsp;' +
+    '<input type="button" value="Remove" class="remove" />'
+}
+
+</script>
+</center>
+
+<br>
+<br>
+
+
+
+
+
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+
+<!-- Third Parallax Image with Outdoor Destinations Text -->
+<div class="bgimg-3 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+     <span class="w3-xxlarge w3-text-white w3-wide">CONTACT</span>
+  </div>
+</div>
+
+<!-- Container (Contact Section) -->
+<div class="w3-content w3-container w3-padding-64" id="contact">
+  <h2 class="w3-center w3-text-colorr">ADVENTOUR TREKS</h2>
+  
+  <!--
+
+  <p class="w3-center"><em>Hike and Climb Mountains in the Philippines with Adventour Treks, </em></p>
+   <p class="w3-center"><em>the mountain tour company that offers nature, culture and </em></p>
+    <p class="w3-center"><em>adventure.</em></p>
+
+  -->
+
+  <div class="w3-row w3-padding-32 w3-section">
+    <div class="w3-col m4 w3-container">
+      <!-- Add Google Maps -->
+      <div id="googleMap" class="w3-round-large w3-greyscale" style="width:100%;height:400px;"></div>
+    </div>
+    <div class="w3-col m8 w3-panel">
+      <div class="w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Davao City<br>
+        <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: +63 9474671219<br>
+        <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: info_adventourtreks@gmail.com<br>
+      </div>
+      <p>For more questions/concerns regarding to this matter, kindly leave me a  direct message:</p>
+
+
+
+      <h4>Email: dumaganearl@gmail.com </h4>
+
+      <!--
+
+      <form action="/action_page.php" target="_blank">
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-half">
+            <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+          </div>
+          <div class="w3-half">
+            <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+          </div>
+        </div>
+
+        <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+
+      -->
+
+        <a href="https://send-email.org/"
+        <button class="w3-button w3-white w3-right w3-section " type="submit">
+
+          
+          <i class=" fa fa-paper-plane "></i> LEAVE A CONSTRUCTIVE MESSAGE
+        
+        </button>
+      </a>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    
+
+    <a href="https://www.facebook.com/" class="fa fa-facebook-official w3-hover-opacity w3-black"></a>
+    <a href="https://www.instagram.com/" class="fa fa-instagram w3-hover-opacity w3-black"></a>
+    <a href="https://www.pinterest.com/" class="fa fa-pinterest-p w3-hover-opacity w3-black"></a>
+    <a href="https://twitter.com/" class="fa fa-twitter w3-hover-opacity w3-black"></a>
+    
+    
+  </div>
+  <p>Designed by <a href="https://www.facebook.com/llEarlzll" title="Pastor | Earl" target="_blank" class="w3-hover-text-green">llEarlzll</a></p>
+</footer>
+ 
+<!-- Add Google Maps -->
+<script>
+function myMap()
+{
+  myCenter=new google.maps.LatLng(7.070011, 125.600317);
+  var mapOptions= {
+    center:myCenter,
+    zoom:17, scrollwheel: false, draggable: false,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+
+  var marker = new google.maps.Marker({
+    position: myCenter,
+  });
+  marker.setMap(map);
+}
+
+
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+    }
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsH1F-xirNCGyT37aBqIVStqH8dBdOwwo&callback=myMap"></script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+
+</body>
+</html>
+
+
